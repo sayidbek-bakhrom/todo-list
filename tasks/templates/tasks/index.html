@@ -1,0 +1,27 @@
+{% extends 'tasks/layout.html' %}
+
+
+{% block body %}
+  <h1>TO DO LIST</h1>
+        <form action="/" method="POST">
+            {% csrf_token %}
+            {{ form.title }}
+            <input type="submit" name="create task" value="Add a task">
+        </form>
+
+    {% for task in tasks %}
+        <div>
+            <a href="{% url 'update_task' task.id %}">Update</a>
+            <a href="{% url 'delete' task.id %}">Delete</a>
+
+        {% if task.complete == True %}
+            <strike>{{ task }}</strike>
+        {% else %}
+            <span>{{ task }}</span>
+        {% endif %}
+        </div>
+    {% endfor %}
+
+
+{% endblock %}
+

@@ -1,0 +1,12 @@
+{% extends 'tasks/layout.html' %}
+
+{% block body %}
+<p>Are you sure you want to delete '{{ item }}'?</p>
+
+<form action="" method="POST">
+    <a href="{% url 'index' %}">Cancel</a>
+    {% csrf_token %}
+    <input type="submit" value="Confirm">
+</form>
+
+{% endblock %}
